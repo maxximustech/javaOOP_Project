@@ -1,3 +1,5 @@
+package models;
+
 public class FoodProduct {
     private int id;
     private String SKU; //stock keeping unit (a unique code for each product)

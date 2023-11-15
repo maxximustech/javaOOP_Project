@@ -1,21 +1,15 @@
+package controllers;
+
 import java.sql.*;
 import java.util.ArrayList;
+import models.FoodProduct;
+import utils.Database;
 
 public class FoodProductDAO {
-    private static final String sqliteURL = "jdbc:sqlite:C:/Users/Maxximus/javaProjects/oopProject/oopfood.sqlite";
-    private static Connection createConnection() {
-        Connection sqlConn = null;
-        try {
-            sqlConn = DriverManager.getConnection(sqliteURL);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return sqlConn;
-    }
     public static ArrayList<FoodProduct> findAllProducts(){
         ArrayList<FoodProduct> products = new ArrayList<>();
         try {
-            Connection connection = createConnection();
+            Connection connection = new Database().getConnection();
             if (connection != null) {
                 String sqlQuery = "SELECT * FROM foodProduct";
                 PreparedStatement readyStatement = connection.prepareStatement(sqlQuery);
@@ -41,7 +35,7 @@ public class FoodProductDAO {
         ArrayList<FoodProduct> products = new ArrayList<>();
         FoodProduct product = null;
         try {
-            Connection connection = createConnection();
+            Connection connection = new Database().getConnection();
             if (connection != null) {
                 String sqlQuery = "SELECT * FROM foodProduct WHERE id = ?";
                 PreparedStatement readyStatement = connection.prepareStatement(sqlQuery);
@@ -71,7 +65,7 @@ public class FoodProductDAO {
             if(findProduct(id) == null){
                 return false;
             }
-            Connection connection = createConnection();
+            Connection connection = new Database().getConnection();
             if (connection != null) {
                 String sqlQuery = "DELETE FROM foodProduct WHERE id = ?";
                 PreparedStatement readyStatement = connection.prepareStatement(sqlQuery);
@@ -91,7 +85,7 @@ public class FoodProductDAO {
             if(findProduct(product.getID()) == null){
                 return false;
             }
-            Connection connection = createConnection();
+            Connection connection = new Database().getConnection();
             if (connection != null) {
                 String sqlQuery = "UPDATE foodProduct SET sku = ?, description = ?,category = ?, price = ?  WHERE id = ?";
                 PreparedStatement readyStatement = connection.prepareStatement(sqlQuery);
@@ -112,7 +106,7 @@ public class FoodProductDAO {
     }
     public static boolean addProduct(FoodProduct product){
         try {
-            Connection connection = createConnection();
+            Connection connection = new Database().getConnection();
             if (connection != null) {
                 String sqlQuery = "INSERT INTO foodProduct (sku,description,category,price) VALUES (?,?,?,?)";
                 PreparedStatement readyStatement = connection.prepareStatement(sqlQuery);

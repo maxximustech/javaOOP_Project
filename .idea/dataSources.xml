@@ -5,7 +5,7 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/oopfood.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:oopfood.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="oopfood" uuid="39b28c2d-136b-4c51-b4db-103313d684d3">
